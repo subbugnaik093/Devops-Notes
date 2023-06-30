@@ -1,0 +1,26 @@
+yum update -y
+yum install docker -y
+yum install git -y
+service docker start
+service docker status
+useradd dockeradmin
+passwd dockeradmin
+usermod -aG docker dockeradmin
+su - dockeradmin
+vi Dockerfile
+### vi Dockerfile
+# Pull base image
+From tomcat:8-jre8
+# Maintainer
+MAINTAINER "sak"
+# copy war file on to container
+COPY ./project-3-ssh-docker-webapp.war /usr/local/tomcat/webapps
+build step : in jenkins --> exec command
+docker stop qspider;
+docker rm -f qspider;
+docker image rm -f qspider;
+cd /home/dockeradmin;
+docker build -t qspider .
+post build step : in jenkins --> exec command
+docker run -it -d --name qspider -p 8090:8080 qspider
+to check --> <public-IP>:8090/project-3-ssh-docker-webapp/

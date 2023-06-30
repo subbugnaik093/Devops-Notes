@@ -1,0 +1,422 @@
+what is linux?
+linux is a opensource, multitasking, multiuser operating system.
+
+What are the basic components of Linux?
+The basic components of Linux are:
+Kernel: It is the core component of the Operating System that manages operations and hardware.
+Shell: Shell is a Linux interpreter which is used to execute commands.
+GUI: GUI stands for Graphical User Interface which is another way for a user to interact with the system. But unlike CLI, GUI consists of Images, Buttons, TextBoxes for interaction.
+System Utilities: These are the software functions that allows the user to manage the computer.
+Application Programs: Software programs or set of functions designed to accomplish a specific task.
+======================================================================================================================================================================================
+
+
+Linux vs windows
+================
+Linux and Windows are two distinct operating systems with several key differences. Here are some of the main differences between Linux and Windows:
+
+Source code and licensing: Linux is an open-source operating system, meaning its source code is freely available to the public, and users can modify and distribute it.
+Windows, on the other hand, is a proprietary operating system developed by Microsoft, and its source code is not freely accessible. Users must obtain licenses to use and modify Windows.
+
+Cost: Linux distributions are often available for free, allowing users to install and use them without any financial cost.
+ Windows, however, typically requires a license fee for each installation, which contributes to the overall cost.
+
+User interface: Linux offers a wide range of desktop environments, such as GNOME, KDE, XFCE, and more, allowing users to customize the appearance and behavior of their desktop environment. 
+Windows provides a consistent graphical user interface (GUI) across its versions, with the Start menu, taskbar, and window management.
+
+Software availability: Windows has a vast software ecosystem, with a wide range of commercial and proprietary software applications available. Many popular software programs are primarily developed for Windows.
+ Linux, on the other hand, has a substantial amount of free and open-source software available. While it has made significant strides in terms of software availability, some proprietary software may have limited or no Linux support.
+
+Compatibility: Windows is the dominant operating system for personal computers, and many hardware devices and peripherals are designed with Windows compatibility in mind.
+ Linux has improved hardware support over the years and supports a wide range of hardware, but compatibility with certain specialized devices or drivers may be more limited compared to Windows.
+
+Security: Linux is often regarded as more secure than Windows due to its inherent design principles, strong permission system, and quick community response to vulnerabilities. Linux's open-source nature allows security flaws to be identified and addressed by the community rapidly. 
+Windows has made significant strides in improving its security in recent years but is still a more common target for malware and viruses.
+
+System administration and command-line interface: Linux offers powerful command-line tools and a robust terminal environment, which makes it popular among system administrators and developers. Windows provides a command-line interface (Command Prompt and PowerShell), but it may not offer the same level of flexibility and familiarity to Linux users.
+
+Customizability: Linux is highly customizable, allowing users to tailor the operating system to their specific needs and preferences. Windows provides some customization options but may not offer the same level of flexibility as Linux.
+======================================================================================================================================================================================
+
+
+Linux vs Unix
+================
+Linux and Unix are related operating systems with some key differences. Here are the main differences between Linux and Unix:
+
+Source code and licensing: Linux is an open-source operating system, meaning its source code is freely available to the public and can be modified and distributed. 
+Unix, on the other hand, is a family of operating systems that includes proprietary versions (such as IBM AIX, Oracle Solaris, and HP-UX) as well as open-source variants like FreeBSD and OpenBSD. The source code of proprietary Unix versions is not generally accessible to the public.
+
+Development and history: Unix was developed in the 1970s at Bell Labs by Ken Thompson, Dennis Ritchie, and others. It laid the foundation for many modern operating systems. 
+Linux, on the other hand, was developed in the early 1990s by Linus Torvalds, inspired by Unix principles and utilizing the GNU software project. Linux is considered a Unix-like operating system.
+
+Licensing model: Unix variants typically have a proprietary licensing model, with vendors charging for the use and support of their Unix-based operating systems. 
+Linux, being open-source, is typically distributed under licenses such as the GNU General Public License (GPL), which allows users to freely use, modify, and distribute the software.
+
+Variants and distributions: Unix has various proprietary versions, each with its own features and characteristics, tailored to specific hardware platforms or industries. Linux, on the other hand, is a kernel that forms the core of the operating system. Linux-based operating systems, known as distributions or distros, are developed and maintained by various organizations and communities. These distributions include Ubuntu, Fedora, Debian, CentOS, and many more. Each Linux distribution packages the Linux kernel with different software, package management systems, and desktop environments.
+
+Compatibility: Unix and Linux share similar design principles and are POSIX (Portable Operating System Interface) compliant, which means they conform to a set of standards for compatibility between Unix-like operating systems. This enables software written for Unix to be easily ported to Linux and vice versa. However, due to different vendor implementations, there may be some compatibility issues between specific Unix versions and Linux distributions.
+
+Market share and usage: Unix has historically been popular in enterprise and server environments due to its stability, scalability, and reliability. Proprietary Unix versions are often used in large organizations and industries such as finance, telecommunications, and government. Linux, being open-source and cost-effective, has gained significant popularity in various domains, including web servers, cloud computing, supercomputers, embedded systems, and personal computing.
+
+Community and development model: The development of Unix variants is primarily driven by specific vendors, each maintaining their own version of the operating system. Linux, being open-source, has a large and active community of developers and contributors worldwide. The Linux community collaborates to enhance the kernel, develop software, and maintain distributions, resulting in a collaborative and community-driven development model.
+======================================================================================================================================================================================
+
+
+
+User Management :-
+----------------------
+Super Market :- billing Counters Workers they will be working 3 shifts
+                for each and every user he will create a user to count
+                number of bills...
+1.To create a user :
+syntax :- useradd <user-name>
+2.To Check whether user is created or not/ User file
+path :- /etc/passwd
+3.How to secure the user
+synatx :- passwd <user-name>
+4.To login as a user/switch
+syntax :- su - user-name
+Root :- switching to user account it will not ask a password Why because
+        Root user is a person one who created a user and he is a
+        super user
+user wants to switch to another user accont we need to add a password
+for the user...
+*) To logout as a user use :- exit
+For securing the password we need to Encrypt
+syntax :- openssl passwd <user-name>
+6.chage :- To display a password related information
+synatx :- chage -l <user-name>
+7.To delete a user
+synatx :- userdel -r <user-name>
+==================================================================
+
+
+For maiantiang a users iam going to create a supparate group for users
+1.To create a group
+syntax :- groupadd <group-name>
+2.To check or group file
+syntax :- cat /etc/group
+3.To add a user into group
+syntax :- usermod -a -G <group> <user-name>
+4.To Rename the group
+syntax :- groupmod -n <new-name> <old-name>
+5.Remove a user from group
+syntax :- gpasswd -d <user-name> <group>
+6. View Group List for a Specific User Using groups
+syntax :- groups <username>
+7. to delete group
+syntax :- groupdel <groupname>
+8. To display who is a member of a group, use the getent command.
+syntax :- getent group group-name
+7:05
+9. Set password for group
+syntax :- gpasswd <groupname>
+==================================================================
+
+
+File Management:
+------------------------------------------------------------------
+Some important directories to take note of are:
+1./    : root Directory
+2./bin : binary or executable programs
+	(nice place for keeping persistent scripts)
+3./etc : system configuration files (an awesome place to obtain
+	credentials)
+4./home: home directory (the default current directory when you
+	open up the terminal)
+5./opt : optional or third-party software
+6./tmp : temporary space, usually cleared on reboot (a great place
+	to store enumeration scripts)
+7./usr : User related programs
+8./var : log files (the perfect place to frustrate a forensic
+	analyst)
+==================================================================
+
+
+
+
+File Permissions :-
+--------------------
+Source code :- modify (dev) --test (read)
+Permissions for users :
+----------------------------
+1.owner permissions
+2.group permissions
+3.other permissions
+
+File/directory  access modes
+-------------------------------
+1.Read permissions
+2.Write permissions
+3.Execute permissions
+
+Permissions mode
+----------------------
+1.Numeric
+2.Alphbets
+syntax :- chmod 777 <file/dir>
+7:- owner (4+2+1)
+7:- group
+7:- other
+4:- read
+2:- write
+1:- execute
+-rw-r--r--
+3 :- owner
+3:- group
+3 :- other
+rw
+r
+r
+-r---w---x
+owner :- read :- 4
+group :- write :-2
+other :- execute :- 1
+rwx      rwx       rwx
+owner(7) group(7) other(7)
+==================================================================
+
+
+14.uname :- to get a information about my system and operting system,
+         machine,release,version..
+uname :- to know about kernal
+uname -o :- to get to know about os
+uname -r :- to know about kernal release
+uname -v :- To know about version of kernal
+uname -m :- to know about a machine
+uname -a :- To get all the information
+==================================================================
+
+
+15.cal :- to print a calendr
+synatx :- cal
+          cal <mon> <year>
+          cal <year>
+16.date :- print the date with time,day,year
+task :- sunday :- 2pm --10am
+Sat Jan 21 03:17:09 UTC 2023
+tue jan 10 02:10:08 utc 2023
+==================================================================
+
+
+
+ File compression formates :
+------------------------------------------------------------------
+--------------------------------------=---------------------------
+It is mainly used to compress the file by this the size of the file will get
+Reduce and quality of the file will be remain same...
+Why we need to compress the file size
+-> To save the storage space...
+--> Easily we can share a file
+i)tar
+ii)zip
+iii)gzip
+1)tar(tape archive):-
+create :- tar cvf <file.tar> <file1 file2 file3>
+c :- create
+v :- verbosly
+f :- file
+Example :- tar cvf jspider.tar f1.txt f2.txt f3.txt
+================================================================
+Extract :- tar xvf <file.tar>
+x :- Extract
+v :- verbosely
+f :- file
+example :- tar xvf jspider.tar
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+to remove files based on its extension
+rm *.txt :- to remove similer kind of files
+rm *     :- to remove full files
+
+
+==================================================================
+2.zip formate :-  package and compress (archive) files
+create :- zip <file.zip> <file1 file2 file3>
+example :- zip jspider.zip a1.txt a2.txt a3.txt
+Extract :- unzip <file-name>
+Example :- unzip jspider.zip
+====================================================================
+
+
+
+3.gzip - For compressing a individul file...
+syntax :- gzip <file>
+Example :- gzip devops.txt
+Extract - For extract individul file...
+syntax :- gzip -d <file.gz>
+Example :- gzip -d wddm12.tar.gz
+eg1 -   gzip devops.txt       --> devops.txt.gz
+	gzip -d devops.txt.gz --> devops.txt
+eg2 - 	gzip tester.tar       --> tester.tar.gz
+      	gzip -d tester.tar.gz --> tester.tar
+==================================================================
+
+
+
+1.Networking Commands :-
+-------------------------------------------------------------------
+-------------------------------------------------------------------
+i)ifconfig :- It is used to display the ip related information.
+	or ip address <provide full details of that network>
+ii)ping :- send ICMP ECHO_REQUEST to network hosts
+iii)netstat :- It is used to check the network conncetions,routing table information
+               interface statics,it will be help for debugging a the servers which
+               all are running which port..
+iv)ss(socket statitics) :- It is similar to netstat but addtionally give more info
+                            about tcp.
+v)host :- It is used to get a information realted to DNS servers
+	--> host -aCdilrTvV
+vi)nslookup :- DNS lookup records.
+	{ query Internet name servers interactively }
+vii)dig(domain infomation groper) :- DNS lookup utility.
+viii)last :- to display the recent login users information
+==================================================================
+
+
+
+
+
+.Disk Utility :
+-------------------------------------------------------------------
+Disk utility commands are used to easliy monitor the system or storage
+related information, and to manage disk partitions ....
+1.fdisk(fixed-disk)
+syntax :- fdisk <diskpath> (double tap tab butten)
+it will show :- Welcome to fdisk (util-linux 2.30.2).
+to quite :- ctrl + c
+2.df :- it is used to get the infomration about disk usage..
+  df -h :- To display the disk usage in human readable lang...
+3.parted :- it is used to get a information about a partitions and by using
+            we can create a new partitions also ...
+synatx :- parted -l
+4.lsblk :- list block devices
+lsblk  lists  information  about all available or the
+       specified block devices.  The lsblk command reads the
+       sysfs filesystem and udev db to gather information.
+syntax :- lsblk
+
+5. to check the disk space usage
+syntax :- du
+6. to check disk space usage in human readable format
+syntax :- du -h
+7. to show the disk usage for all the files.
+syntax :- du -a
+8. it will show the total disk space used by a specific directory or file.
+syntrax :- du -s
+9. This option is used to display the last modification time in the
+	output of du.
+syntax :- du --time <directory name>
+eg1 :- du --time sample/
+
+==================================================================
+
+
+1.Filter commands:
+------------------------------------------------------------------------
+1.Head :-It is used to print the statring lines of file
+         by default it will print 10 lines
+syntax :- head <file-name>
+i) To print a specific lines
+synatx :- head -n <num> file-name
+eg1 -  	  head -n 2 sample.txt
+          head -<num> file-name
+eg2 -	  head -3 sample.txt
+-------------------------------------------------------------------
+
+2)Tail :- It will display the data from a last line(count the lines from
+          last line) Default 10 lines
+synatx :- tail <file-name>
+i) Number of lines :- tail -n <num> file
+	
+eg1 -                <tail -n 6 sample.txt>
+-------------------------------------------------------------------
+
+3.Pipeline :- To combine a multiple commands and it will pass the output
+              of 1st command as an input to 2nd command
+syntax :- cmd1 | cmd2
+example :- head -5 students.txt | tail -2
+-------------------------------------------------------------------
+
+4.sort :- To display the data in ascending or descending
+syntax :- sort <file-name> :- ascending order
+eg1 -     <sort sample.txt>
+          sort -r <file-name> :- Desending order
+eg2 - 	  <sort -r sample.txt>
+-------------------------------------------------------------------
+
+5.Uniq :- By using this we can display/find the duplicate data
+i) I want to count a number of occurance of a char
+syntax :- uniq -c <file>
+ii) To print only duplicate data
+syntax :- uniq -d <file-name>
+iii) to print duplicate data and count
+syntax :- uniq -cd <file-name>
+iv) to print only unique lines
+syntax :- uniq -u <file-name>
+-------------------------------------------------------------------
+
+6.find :- It is used to search a speific data
+i) It will search for file in user directories
+syntax :- find -name <file-name>
+ii) It will search for in given directory
+syntax :- find <from directory> -name <file name>
+eg 1 :-   find ./ -name sample.txt
+iii) search for empty files
+syntax :- fnd <from directory> -empty
+eg 1 :- find ./ -empty
+iv) search for the file with entered permissions
+syntax :- find <from directory> -perm <num permission>
+eg 1 :- find ./ -perm 664
+-------------------------------------------------------------------
+
+7.grep print lines matching a pattern
+i) grep :- group regular expression
+syntax :- grep <search-word> <filename>
+eg 1 :- grep "one" file.txt
+ii) to Displaying the count of number of matches
+syntax :- grep -c <search-word> <filename>
+eg 1 :- grep -c "one" file.txt
+iii) to Displaying only the matched pattern
+syntax :- grep -o <search-word> <filename>
+eg 1 :- grep -o "one" file.txt
+-------------------------------------------------------------------
+
+
+8.sed (stream editor) :-  stream editor for filtering and
+ 			transforming text
+syntax :- sed 's/old-data/new-data/' <file-name>
+i)Change a data in entire file
+syntax :- sed 's/old-data/new-data/' <file-name>
+ii) Printing cahnged data for 2x times
+syntax :- sed 's/old-data/new-data/p' <file-name>
+iii) Replace the specific line :
+syntax :- sed '2 s/old-data/new-data/' <file-name>
+-------------------------------------------------------------------
+
+
+9)awk :- Text processing in linux
+	 pattern scanning and processing language
+syntax :- awk '{print}' file  --> it will print same
+example :- awk '{print}' student.txt
+Features :
+1.It scans a file line by line
+2.it formates the output file
+3.it will compare
+i) to Print the lines which match the given pattern.
+syntax :- awk '/<filter_word>/ {print}' <file>
+eg 1 :- awk '/manager/ {print}' employee.txt
+ii) To print a specified a column :
+syntax :- awk '{print $1,$2}' file-name
+iii) I want to print a serial number with data
+syntax :- awk '{print NR,$0}' file-name
+-------------------------------------------------------------------
+
+
+10.tr :- Translate or delete characters
+i) to change characters
+syntax :- cat <file> | tr [old char] [new char]
+eg 1 :- cat greekfile | tr [a-z] [A-Z]
+ii) to change word
+syntax :- command | tr <old> <New>
+example :- cat <file> | tr <oldword> <newword>
+eg 1 :-    cat student.txt | tr mech MECH

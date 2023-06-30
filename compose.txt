@@ -1,0 +1,60 @@
+version : '3'
+
+services:
+
+  web:
+
+    image: nginx
+
+    ports:
+
+      -  4000:80
+
+  
+
+  db:
+
+    image: redis
+
+
+FROM amazonlinux
+    MAINTAINER <Enter Docker hub mail_id>
+    RUN yum update -y
+    RUN yum install -y wget
+    RUN yum install -y tarhttps://codeshare.pallet.xyz/
+    RUN yum install -y gzip
+    RUN wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.73/bin/apache-tomcat-9.0.73.tar.gz
+    RUN tar -xf apache-tomcat-9.0.73.tar.gz
+    RUN yum install -y java
+    RUN sh apache-tomcat-9.0.73/bin/startup.sh
+    
+    
+    
+    "vi docker.sh
+
+sudo yum update -y
+sudo yum search docker
+sudo yum info docker
+sudo yum install -y docker
+sudo systemctl enable docker.service
+sudo systemctl start docker.service
+sudo systemctl status docker.service
+docker version
+sudo curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+docker-compose version
+
+sh docker.sh"
+
+
+
+
+version : '3'
+services:
+  web:
+    image: nginx
+    ports:
+      -  4000:80
+  db:
+    image: redis
+

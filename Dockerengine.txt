@@ -1,0 +1,68 @@
+Docker Engine
+
+
+
+
+sudo yum update -y
+sudo yum search docker
+sudo yum info docker
+sudo yum install -y docker
+sudo systemctl enable docker.service
+sudo systemctl start docker.service
+sudo systemctl status docker.service
+sudo docker version
+sudo curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+docker-compose version
+
+
+
+
+
+Docker and Docker Hub are related but serve different purposes in the context of containerization.
+
+Docker is an open-source platform that enables developers to build, package, and distribute applications as lightweight containers. 
+Containers provide a consistent and isolated environment for running applications, 
+allowing them to be easily deployed across different systems with minimal dependencies and configuration issues. 
+Docker provides tools and features to create, manage, and deploy containers efficiently.
+
+On the other hand, 
+Docker Hub is a cloud-based service provided by Docker that serves as a public or private repository for Docker images. 
+Docker images are the building blocks of containers and contain the application code, dependencies, and other necessary components. 
+Docker Hub allows users to publish their own Docker images or pull and use images created by others from a centralized registry.
+
+In summary, Docker is the platform that enables containerization, while Docker Hub is a service that provides a centralized repository for storing and sharing Docker images. 
+Docker Hub simplifies the process of finding and distributing Docker images, making it easier for developers to leverage pre-built containers for their applications.
+
+
+Docker Architecture
+===================
+
+Docker Engine: Docker Engine is the core component of Docker. It is responsible for building, running, and managing Docker containers. 
+It consists of three main parts:
+
+Docker Daemon: The Docker daemon runs on the host machine and manages container execution, image handling, and network and storage resources.
+
+Docker Client: The Docker client is a command-line interface (CLI) tool that allows users to interact with the Docker daemon. 
+It sends commands to the daemon and receives responses.
+
+Docker REST API: The REST API provides a programmatic interface to interact with Docker. It allows developers to manage containers, images, networks, and other Docker resources.
+
+Docker Images: Docker images are the building blocks of containers. An image is a read-only template that contains the necessary files, libraries, and dependencies required to run a specific application.
+ Images are created using a Dockerfile, which defines the instructions to build the image. Images can be stored in Docker registries, such as Docker Hub or private registries.
+
+Docker Containers: Containers are lightweight, isolated environments created from Docker images. 
+ Each container runs as an independent process and has its own filesystem, network interface, and process space.
+ Containers are portable and can be easily moved between different environments running Docker.
+
+Docker Registry: A Docker registry is a centralized repository for Docker images. It allows users to store and distribute Docker images. 
+Docker Hub is the default public registry provided by Docker, but you can also set up private registries to store and share images within your organization.
+
+Docker Compose: Docker Compose is a tool that enables the definition and management of multi-container applications.
+ It uses a YAML file to define the services, networks, and volumes required by an application.
+ Docker Compose simplifies the orchestration of multiple containers and allows you to define complex application architectures.
+
+Docker Swarm (optional): Docker Swarm is Docker's native clustering and orchestration solution for creating and managing a swarm of Docker nodes. It allows you to create a cluster of Docker nodes and distribute containers across multiple hosts for high availability and scalability.
+
+ NGINX -  Nginx can be used as a reverse proxy within a Docker container setup. It can receive incoming requests and distribute them to multiple backend containers running different parts of an application. This allows for load balancing, improved scalability, and fault tolerance.
+

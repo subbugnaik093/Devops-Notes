@@ -1,0 +1,3 @@
+POM.XML  ---> Project object model. xtensionable markup language
+exe - executable file.
+tar - tab archive

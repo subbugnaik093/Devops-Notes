@@ -1,0 +1,48 @@
+1.User Management :-
+----------------------
+Super Market :- billing Counters Workers they will be working 3 shifts
+                for each and every user he will create a user to count
+                number of bills...
+1.To create a user :
+syntax :- useradd <user-name>
+2.To Check whether user is created or not/ User file
+path :- /etc/passwd
+3.How to secure the user
+synatx :- passwd <user-name>
+4.To login as a user/switch
+syntax :- su - user-name
+Root :- switching to user account it will not ask a password Why because
+        Root user is a person one who created a user and he is a
+        super user
+user wants to switch to another user accont we need to add a password
+for the user...
+*) To logout as a user use :- exit
+5.For securing the password we need to Encrypt
+syntax :- openssl passwd <user-name>
+6.chage :- To display a password related information
+synatx :- chage -l <user-name>
+7.To delete a user
+synatx :- userdel -r <user-name>
+
+
+
+1.To create a group
+syntax :- groupadd <group-name>
+2.To check or group file
+syntax :- cat /etc/group
+3.To add a user into group
+syntax :- usermod -a -G <group> <user-name>
+4.To Rename the group
+syntax :- groupmod -n <new-name> <old-name>
+5.Remove a user from group
+syntax :- gpasswd -d <user-name> <group>
+6. View Group List for a Specific User Using groups
+syntax :- groups <username>
+7. to delete group
+syntax :- groupdel <groupname>
+8. To display who is a member of a group, use the getent command.
+syntax :- getent group group-name
+
+9. Set password for group
+syntax :- gpasswd <groupname>
+

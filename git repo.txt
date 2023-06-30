@@ -1,0 +1,69 @@
+cd Desktop/
+  126  cd Hombale/
+  127  git init
+  128  cat > demo.java
+  129  git add demo.java
+  130  git commit -m "Demo"
+  131  git remote -v
+  132  git remote add origin https://github.com/subbugnaik093/KGF.git
+  133  git remote -v
+  134  git push origin master
+  135  git branch dev
+  136  git switch dev
+  137  cat > sample
+  138  ls
+  139  git rm sample
+  140  ls
+  141  cat > sample.java
+  142  git add sample.java
+  143  git commit -m "Sample"
+  144  git push origin dev
+  145  git switch master
+  146  cat > security.txt
+  147  git add security.txt
+  148  git commit -m "Security"
+  149  git push origin master
+  150  git switch dev
+  151  ls
+  152  git switch master
+  153  ls
+  154  touch d1.txt d2.txt
+  155  git status
+  156  git add d1.txt
+  157  git add d2.txt
+  158  git commit -m "dual files"
+  159  git us
+  160  git push origin  master
+  161  git branch support
+  162  git switch support
+  163  ls
+  164  git status
+  165  cat > d1.txt
+  166  cat > d2.txt
+  167  git add d1.txt
+  168  git add d2.txt
+  169  git commit -m "Alternated files"
+  170  git push origin support
+  171  cat d1.txt
+  172  git switch master
+  173  cat d1.txt
+  174  git merge support
+  175  cat d1.txt
+  176  cat d2.txt
+  177  git clone https://github.com/subbugnaik093/KGF.git
+  178  git remote -v
+  179  git remote add origin1 https://github.com/subbugnaik093/KGF2.git
+  180  git remote -v
+  181  ls
+  182  cd KGF
+  183  ls
+  184  git branch master
+  185  git switch master
+  186  ls
+  187  git switch support
+  188  ls
+  189  git switch master
+  190  ls
+  191  git push origin1 --all
+  192  cd ..
+  193  git push origin1 --all

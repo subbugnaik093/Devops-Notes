@@ -1,0 +1,45 @@
+  cd Monstar/
+   37  git init
+   38  cat > login.txt
+   39  git status
+   40  git add login.txt
+   41  git commit -m "m1"
+   42  gir remote -v
+   43  git remote add origin https://github.com/subbugnaik093/login.git
+   44  git remote -v
+   45  git push origin master
+   46  cat > login.txt
+   47  git status
+   48  git add login.txt
+   49  git commit -m "m2"
+   50  git status
+   51  cat > login.txt
+   52  git status
+   53* git add login.txt 
+   54  git log --oneline
+   55  git status
+   56  git commit -m "m3"
+   57  cat > login.txt
+   58  git status
+   59  git add login.txt
+   60  git commit -m "m4"
+   61  cat > login.txt
+   62  git status
+   64  git checkout login.txt
+   65  git reset login.txt
+   66  git checkout login.txt
+   67  git log --oneline
+   68  git log
+   69  cat login.txt
+   70  vi login.txt
+   71  cat login.txt
+   72  git status
+   73  git add login.txt
+   74  git commit -m "m5"
+   75  git log --oneline
+   76  git reset --hard HEAD~1
+   77  git log --oneline
+   78  git revert master
+   79  git log --oneline
+   80  git status
+   81  git push origin  master

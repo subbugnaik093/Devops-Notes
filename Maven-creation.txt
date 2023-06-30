@@ -1,0 +1,66 @@
+//1. de-interactive mode jar file diffrent command
+
+mvn archetype:generate 
+cd school/
+echo "now we are in that project"
+mvn validate
+mvn clean
+mvn compile
+mvn test
+mvn package
+mvn verify
+mvn install
+mvn site
+echo "************************ project is completed **************************"
+
+
+	
+
+
+//2. de-interactive mode jar file diffrent command
+
+mvn archetype:generate -DgroupId=testhome -DartifactId=school -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+cd school/
+echo "now we are in that project"
+mvn validate
+mvn clean
+mvn compile
+mvn test
+mvn package
+mvn verify
+mvn install
+mvn site
+echo "************************ project is completed **************************"
+
+//3. de-interactive mode war file diffrent command
+
+mvn archetype:generate  -DarchetypeArtifactId=maven-archetype-webapp 
+cd school/
+echo "now we are in that project"
+mvn validate
+mvn clean
+mvn compile
+mvn test
+mvn package
+mvn verify
+mvn install
+mvn site
+echo "************************ project is completed **************************"
+
+
+//4. de-interactive mode war file diffrent command
+
+mvn archetype:generate -DgroupId=testhome -DartifactId=school -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
+cd school/
+echo "now we are in that project"
+mvn validate
+mvn clean
+mvn compile
+mvn test
+mvn package
+mvn verify
+mvn install
+mvn site
+echo "************************ project is completed **************************"
+
+

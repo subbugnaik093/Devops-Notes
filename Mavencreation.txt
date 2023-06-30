@@ -1,0 +1,25 @@
+Maven installation
+--------------------------------------------------------------------------------------------------------------------------------------------------
+step 1 :- Open Browser and Search Maven and choose a Official Website of Maven and click on Download
+step 2 :- Copy the Link →
+	wget https://dlcdn.apache.org/maven/maven-3/3.9.2/binaries/apache-maven-3.9.2-bin.tar.gz
+Step 3 : To extract the tar file → tar xvf apache-maven-3.9.2-bin.tar.gz
+Step 4 :Rename the apache-maven-3.9.2 to maven → mv apache-maven-3.9.2 Maven
+Step 5 :- change directory to → cd /root/Maven/bin → Pwd :- /root/maven/bin
+	Nano ~/.bashrc  → to exit → ctrl + x → y → enter
+	cat ~/.bashrc → it will show like this
+{      # .bashrc
+# User specific aliases and functions
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+        . /etc/bashrc
+fi
+export PATH=/root/Maven/bin:$PATH        }
+then come to root directory by using command → cd
+To activate the path : source .bashrc
+step 6 :Install java why because maven is written in java
+	yum install java-11* -y
+	 mvn --version

@@ -1,0 +1,12 @@
+FROM amazonlinux
+    MAINTAINER <Enter Docker hub mail_id>
+    RUN yum update -y
+    RUN yum install -y wget
+    RUN yum install -y tar
+    RUN yum install -y gzip
+    RUN wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.73/bin/apache-tomcat-9.0.73.tar.gz
+    RUN tar -xf apache-tomcat-9.0.73.tar.gz
+    RUN yum install -y java
+    RUN sh apache-tomcat-9.0.73/bin/startup.sh
+
+

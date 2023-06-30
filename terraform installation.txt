@@ -1,0 +1,121 @@
+1.
+provider "aws" {
+  region     = "ap-south-1"
+  access_key = "AKIA6RGYC7GFSFU46RUI"
+  secret_key = "ZCKhXmhOdBno2VsA8gwdWcUKe6+mb8eGOuDbFKEA"
+}
+resource "aws_instance" "terraform_sample" {
+ami = "ami-006935d9a6773e4ec"
+instance_type = "t2.micro"
+key_name = "aws"
+count = "3"
+}
+
+
+
+AKIA6RGYC7GFSFU46RUI
+ZCKhXmhOdBno2VsA8gwdWcUKe6+mb8eGOuDbFKEA
+
+
+
+
+
+2.
+provider "aws" {
+  region     = "ap-south-1"
+  access_key = "AKIA6RGYC7GFSFU46RUI"
+  secret_key = "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"
+}
+resource "aws_security_group" "web-node" {
+  name        = "web-node"
+  description = "Web Security Group"
+  ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "all"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "all"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+resource "aws_instance" "terraform_demo" {
+ami = "ami-006935d9a6773e4ec"
+instance_type = "t2.micro"
+key_name = "aws"
+security_groups = ["${aws_security_group.web-node.name}"]
+  count         = 1
+}
+
+
+
+provider "aws" {
+  region     = "ap-south-1"
+  access_key = "AKIA6RGYC7GFSFU46RUI"
+  secret_key = "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"
+}
+resource "aws_security_group" "web-node" {
+  name        = "web-node"
+  description = "Web Security Group"
+  ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "all"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "all"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+resource "aws_instance" "terraform_demo" {
+ami = "ami-006935d9a6773e4ec"
+instance_type = "t2.micro"
+key_name = "aws"
+security_groups = ["${aws_security_group.web-node.name}"]
+  count         = 1
+user_data = <<-EOF
+#! /bin/bash
+  sudo yum update -y
+  sudo amazon-linux-extras install nginx1 -y
+  sudo systemctl start nginx.service
+  sudo service nginx start
+  EOF
+}
+resource "aws_instance" "terraform_sample" {
+ami = "ami-006935d9a6773e4ec"
+instance_type = "t2.micro"
+key_name = "aws"
+security_groups = ["${aws_security_group.web-node.name}"]
+  count         = 1
+user_data = <<-EOF
+#! /bin/bash
+  sudo yum update -y
+  sudo amazon-linux-extras install httpd_modules -y
+  sudo systemctl start httpd_modules.service
+  sudo service httpd_modules start
+  EOF 
+}
+
+
+
+IAC, which stands for Infrastructure as Code, is a concept and approach used in software development and cloud computing. It is not a specific platform, but rather a methodology for managing and provisioning infrastructure resources using machine-readable configuration files.
+
+IAC solves the problem of manual and error-prone infrastructure management by treating infrastructure resources, such as servers, networks, and storage, as code. By defining infrastructure configurations in code, developers and operations teams can use version control, automated testing, and deployment tools to manage infrastructure in a more reliable, scalable, and efficient manner.
+
+Several platforms and tools support Infrastructure as Code, including:
+
+AWS CloudFormation: A service provided by Amazon Web Services (AWS) for creating and managing AWS resources using JSON or YAML templates.
+
+Terraform: An open-source infrastructure provisioning tool developed by HashiCorp. It supports various cloud providers, including AWS, Azure, Google Cloud Platform, and others.
+
+Azure Resource Manager (ARM) Templates: A declarative language and deployment framework provided by Microsoft Azure for provisioning and managing Azure resources.
+
+Google Cloud Deployment Manager: A service provided by Google Cloud Platform (GCP) for creating and managing GCP resources using YAML or Python configuration files.
+
+These are just a few examples of platforms and tools that enable Infrastructure as Code. Each platform has its own syntax and features, but they all share the goal of automating infrastructure provisioning and management through code.

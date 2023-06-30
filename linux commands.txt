@@ -1,0 +1,211 @@
+
+Here is a list of some commonly used Linux commands:
+
+ls - List files and directories in the current directory
+cd - Change directory
+pwd - Print the current working directory
+mkdir - Create a new directory
+rm - Remove a file or directory
+cp - Copy a file or directory
+mv - Move a file or directory
+touch - Create an empty file or update the modification time of an existing file
+cat - Display the contents of a file
+less - View the contents of a file one page at a time
+grep - Search for a pattern in a file or directory
+find - Find files or directories based on various criteria
+chmod - Change the permissions of a file or directory
+chown - Change the owner of a file or directory
+ps - List the running processes on the system
+top - Display the system resource usage and the processes using the most resources
+df - Display the amount of free and used disk space on the system
+du - Display the disk usage of files and directories
+tar - Create or extract compressed archives
+ssh - Connect to a remote system securely over a network
+scp - Securely copy files between remote and local hosts
+curl - Transfer data from or to a server using various protocols
+wget - Download files from the internet
+ping - Test network connectivity to a server or device
+ifconfig - Display or configure network interfaces
+ip - Manage and configure IP addresses and network interfaces
+route - Display or configure the routing table
+netstat - Display network connections and statistics
+whois - Look up domain or IP address ownership information
+traceroute - Trace the network path to a remote host
+
+
+
+
+
+linux commands with explanations
+
+1. sudo    -  to execute a command as another user.
+2. mkdir   -  to execute a directory
+3. ls      -  to get list of files or folders.
+4. ls -a   -  to get list of all files along with hidden files.
+5. ls -l   -  to get the lengthy information about the list of files.
+6. clear   -  it will clear the CLI.
+7. cd<d.n> -  to go inside a directory
+8. cd      -  to goes directly to root user path. 
+9. cd ..   -  to go current directory to previous directory.
+10. pwd    -  to know present working directory
+11. touch  -  to execute a file.
+12. vi     -  to edit the file.
+13. cat    -  to read the file.
+14. cat >  -  to rewrite the file.
+15. cat >> -  to add the data in the file.
+16. nano   -  to make small to exisiting configure file.
+17. rm     -  to remove the file.
+18. rmdir  -  to remove the directory.
+19. rm -f  -  to remove the file forcefully
+20. rm -rf -  to remove the directory forcefully.
+21. cp     -  to copy from one file to another file.
+22. mv     -  to move from one file to another file.
+23.who am i-  to know the user name being login.
+24.useradd -  to create user.
+25.cat /etc/passwd - to check whether user is created or not.
+26.passwd<username>- to set a password for user.
+27.su -    -  to login as user.
+28.Openssl passwd  - to securing the password we need to encrypt.
+29.chage -l-  to display password related information.
+30.exit    -  to logout the user or directory.
+31.userdel -r     - to delete the user.
+32.groupadd - add the group
+33.cat /etc/group - to check whether the group created or not.
+34.gpasswd - to set the password for the group
+35.usermod -a -G - to add a user to group
+36.groupmod -n - to change the group name.
+37.gpasswd -d  - to remove the user inside the group.
+38.groups  - to view group list for a specific user.
+39.groupdel- to delete the group
+40.getent group - to view the member of the group.
+41. man - to provide information about the selected commands.
+42.uname     - to know about the kernal
+43.uname -o  - to know about the os
+44.uname -v  - to know about the kernel version.
+45.uname -r  - to know about the kernel release.
+46.uname -m  - to  know about the machine.
+47.uname -a  - to know about the all information about the kernal.
+48.chmod     - to give the permissions for files.
+49. /        - root directory.
+50. /bin     - binary or executable programs.
+51. /etc     - system configure files.
+52. /opt     - optional or third party software.
+53. /tmp     - tempraury space.
+54. /usr     - user related programs.
+55. /var     - log files.
+56. cal      - to print a calender
+57. cal <mon><year> - to print a calender about the that year of the month.
+58. cal <year>- to print the that years calander.
+59.date - to print the date with time,day,year.
+60. tar cvf - to compress the file
+61. tar xvf - to extract the file.
+62. rm * .txt - to remove similiar kinds of files.
+63. rm *  - to remove all the file at the time
+64.zip    - package and compress the file.
+65. unzip - to extract the file.
+66. gzip  - to compress individual file.
+67.gzip -d- to extract the individual file.
+68.ifconfig - to display ip related information.
+69.ping -c - to set the number of packets
+70.ping -s - to set the size of the packets.
+71.ping -i - to set the time between packets.
+72.ping    - send icmp echo_requests to hosts.
+73.netstat  -to check the network connections.
+74.netstat -t - to display information about the tcp.
+75.netstat -u - to display information about the udp.
+76.netstat -ta - to display all connections
+77.netstat -r - to display routing table information.
+78.ss- it is similiar to the netstat but it gives additional information about the tcp
+79.ss -t - to display information about the tcp.
+80. ss -u - to display information about the udp.
+81. ss -ta - to display all connections
+82. ss -tn - to display network socket information.
+83. ss -i   - to display information about the network interfaces.
+84.host - to get information about the DNS Servers.
+85.host -t - to set the query type.
+86.nslookup - to get DNS lookup records 
+87.nslookup -query - to set the query type.
+88.dig - to get DNS lookup utility.
+89.dig +type - to set the query type.
+90.dig +short - to display the only ip address of the domain name.
+91. last   - to display the recent login.
+92.last -r - to display the output in reverse order.
+93.last jdoe - to display the login session of the user.
+94.last -x   - to display system switchdown and reboot times.
+95.fdisk  -l - to display the available hard disk
+96.fdisk -m  - to display fdisk help menu
+97.fdisk -p  - to print the partition table of the hard disk
+98.fdisk -n  - to create new partition.
+99.fdisk -d  - to delete a partition.
+100.fdisk -w - to write the patition table to hard disk.
+101.lsblk    - list block devices.
+102.lsblk -a - to display all devices including partition.
+103.lsblk -f - to display file system type.
+104.du - to check the disk usage space.
+105.du -h - to check the disk usge space in human understandable.
+106.du -a - to show the disk usage for all the files.
+107.du -s - to show the disk usage by a specific directory.
+108.du--time -to display the last modification time in the output of du.
+109.Head - to print bydefault starting 10 lines of file.
+110.Head -n - to print specific lines
+111.Head -<num> - to print specfic lines.
+112.tail - to print bydefault last 10 lines of file.
+113.tail -n - to print speific line
+114.tail -<num> - to print speific line
+115.head -n <filename> | tail -n - to combine multiple  commands.
+116.sort - to display asecnding order.
+117.sort -r - to display descending order.
+118.uniq -c - to count a number of occurance of char.
+119.uniq -d - to print only duplicate data.
+120.uniq -cd- to print duplicate and count
+121.uniq -u - to print uniq lines
+122.find -name -to search files in user directories
+123.find ./ -name - to search files in given directories.
+124.find - to search specific data.
+125.find ./ - to search empty files.
+126.find ./ -perm -to search file with entered permission.
+127.grep - to search the word in file
+128.grep -c - to count the number of words matched.
+129.grep -o - to print only matched pattern.
+130.sed 's/o-data/n-data/' - to change a data in enire file.
+131.sed 's/o-data/n-data/p'- to print changed for 2x time.
+132.sed '2 s/o-data/n-data/' -replace the specific line.
+133.awk '{print}' file - it will print same.
+134.awk '/<dilter word>/{print}' - to print the lines which match the given pattern.
+135.awk '{print $1,$2}' filename - to print a specified column.
+136.awk '{print NR,$0} - to print a serial number with data.
+137.cat <file> | tr [old char] [new char] - to change character.
+138.git init -create empty git repositroy
+139.git clone- clone a repository into new directory.
+140.git add -add file content to the index.
+141.git mv -move or rename file.
+142.git restore -restore working tree file.
+143.git rm -remove the file from the index
+144.git bisect - use binary search to find the commit and working tree.
+145.git grep - print lines matching a pattern.
+146.git log - show commit logs.
+147.git show - show varies type of objects.
+148.git status -show working the status
+149.git branch - list create or delete branches.
+150.git branch -d - delete git branches
+151.git commit - record changes to the repository.
+152.git merge - to join 2 or more development histories together.
+153.git rebase - re apply commits on top of another base tip.
+154.git reset -to return the value from staging area to workspace.
+155.git switch - to switch  the branches.
+156.git tag - create, list, delete or vrify a tag object signed with gpg.
+157.git fetch - download object and refs from another repository.
+158.git pull - fetch from and integrate with another repository or local branch.
+159.git push - update rmote refs along with associated objects.
+160.git add . -it will be add multiple files.
+161.mkdir -p - to create multiple directory.
+162. ln -s - to link between 2 files.
+163. unlink - unlink between two files.
+164. ls -it - to show newest files.
+165.git branch <name> -to create a branch name.
+166.ssh - Connect to a remote system securely over a network.
+166.scp - Securely copy files between remote and local hosts
+167.wget - Download files from the internet
+168.route - Display or configure the routing table
+169.whois - Look up domain or IP address ownership information
+170.traceroute - Trace the network path to a remote host

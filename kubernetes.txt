@@ -1,0 +1,824 @@
+1.
+#!/bin/bash
+# Swap memory
+swapoff -a
+# Install Docker
+sudo apt-get update
+sudo apt-get install -y\
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+sudo apt-get update
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+# Install Kubernetes
+sudo apt-get update && sudo apt-get install -y apt-transport-https curl
+curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-archive-keyring.gpg
+echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+sudo apt-get update
+#sudo apt-get install -y kubelet kubeadm kubectl
+sudo apt-get install -y kubelet=1.21.1-00 kubeadm=1.21.1-00 kubectl=1.21.1-00 #--allow-change-held-packages
+sudo apt-mark hold kubelet kubeadm kubectl
+
+
+#MINIKUBE
+
+2.we have to specify master node inthat time print following below command
+sudo kubeadm init
+
+3.it will intiallize control plane,but we have to start using our cluster so in that time we will use following below commands:
+ mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+4.in that time we have to specify  and take the control on worker node, so inthat time we to paste below that command in worker node server.
+sudo kubeadm join 172.31.1.159:6443 --token nooqha.5pf25addzxd1r1u4 \
+        --discovery-token-ca-cert-hash sha256:f2c06f9b8e29ceb834e6aed0907369dadd53e786fc857b5d9a146e5fd85bb397
+
+
+2. still its not ready inthat time we to start our nodes so we have to add plugins in our master node)
+kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
+
+
+3.in our cluster we created nodes so inthat nodes  we have to add some podes(pods contain nodes)
+
+kind: Pod
+apiVersion: v1
+metadata:
+  name: jspider
+spec:
+  containers:
+    - name: sample1
+      image: ubuntu
+      command: ["/bin/bash", "-c", "while true; do echo hello all; sleep 2 ; done"]
+  restartPolicy: Never         # Defaults to Always
+
+
+
+
+4.
+kind: Pod
+apiVersion: v1
+metadata:
+  name: devops
+spec:
+  containers:
+    - name: sample1
+      image: ubuntu
+      command: ["/bin/bash", "-c", "while true; do echo Devops; sleep 2 ; done"]
+    - name: sample2
+      image: centos
+      command: ["/bin/bash", "-c", "while true; do echo dev; sleep 2 ; done"]
+
+
+
+
+5.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: jspider
+spec:
+  containers:
+  - name: testfreshers
+    image: nginx
+    ports:
+    - containerPort: 80
+
+
+6.
+curl 10.44.0.2:80
+
+
+7.
+kind: Pod
+apiVersion: v1
+metadata:
+  name: testfreshers
+  labels:
+    department: developer
+    batch: jddw3
+spec:
+    containers:
+       - name: demo
+         image: ubuntu
+         command: ["/bin/bash", "-c", "while true; do echo testfreshers; done"]
+
+
+8.
+kubectl label pod testfreshers name=sak
+
+
+
+9.
+kubectl get pods --show-labels
+
+
+
+
+10.
+kubectl label pod testfreshers name=sak
+   29  kubectl get pods --show-labels
+   30  kubectl get pods -l department=developer
+   31  kubectl get pods -l department!=developer
+   32  kubectl get pods -l department=developer
+
+
+
+11.
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: skillrary
+spec:
+  replicas: 2
+  selector:
+    app: nginx
+  template:
+    metadata:
+      name: abc
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: xyz
+        image: nginx
+        ports:
+        - containerPort: 80
+
+
+12.
+kubectl apply -f rc.yml
+  kubectl get pods
+
+13.
+kubectl get rc
+
+14.
+kubectl delete pod <container name>
+
+
+
+15.
+kubectl scale --replicas=8 rc -l app=nginx
+
+
+16.
+kind: ReplicaSet
+apiVersion: apps/v1
+metadata:
+  name: rs
+spec:
+  replicas: 2
+  selector:
+    matchExpressions:
+      - {key: myname, operator: In, values: [qspider, jspider, pyspider]}
+      - {key: env, operator: NotIn, values: [skillrary]}
+  template:
+    metadata:
+      name: sak
+      labels:
+        myname: qspider
+    spec:
+     containers:
+       - name: abc
+         image: ubuntu
+         command: ["/bin/bash", "-c", "while true; do echo Hello-world; sleep 3 ; done"]
+
+
+17.
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+   name: skillrary
+spec:
+   replicas: 2
+   selector:
+    matchLabels:
+     name: deployment
+   template:
+     metadata:
+       name: qspider
+       labels:
+         name: deployment
+     spec:
+      containers:
+        - name: abc
+          image: ubuntu
+          command: ["/bin/bash", "-c", "while true; do echo skillrary; sleep 5; done"]
+
+
+
+18.
+kubectl get deploy
+
+
+19. kubectl exec <particular pod name> -- cat/etc/os_release
+
+
+kubectl apply -f deploy.yml
+   16  kubectl get pods
+   17  kubectl scale --replicas=5 deploy skillrary
+   18  kubectl get deploy skillrary
+   19  kubectl get pods
+   20  kubectl scale --replicas=1 deploy skillrary
+   21  kubectl get pods
+   22  kubectl logs -f skillrary-7688f4b8b5-9t7nh
+   23  kubectl get pods
+   24  kubectl exec skillrary-7688f4b8b5-9t7nh -- cat /etc/os-release
+   25  vi deploy.yml
+   26  kubectl get pods
+   27  kubectl apply -f deploy.yml
+   28  clear
+   29  kubectl get pods
+   30  clear
+   31  kubectl get pods
+   32  kubectl logs -f skillrary-648854c68f-cn94p
+   33  kubectl get pods
+   34  kubectl exec skillrary-648854c68f-cn94p -- cat /etc/os-release
+   35  kubectl get pods
+   36  kubectl rollout status deployment skillrary
+   37  kubectl rollout undo deploy skillrary
+   38  kubectl get pods
+   39  clear
+   40  kubectl get pods
+   41  kubectl logs -f skillrary-7688f4b8b5-cjsbk
+   42  kubectl get pods
+   43  kubectl exec skillrary-7688f4b8b5-cjsbk -- cat /etc/os-release
+   44  kubectl delete -f deploy.yml
+   45  kubectl get pods	
+
+
+
+
+
+
+
+
+
+
+
+get inside the conatiner and get acess
+========================================================================================
+    1  vi multic.yml
+    2  ls
+    3  rm -rf deploy.sh
+    4  ls
+    5  kubectl get pods
+    6  kubectl delete deploy.sh
+    7  kubectl apply -f multic.yml
+    8  kubectl get pods
+    9  cat multic.yml
+   10  kubectl exec qspider -it -c abc -- /bin/bash
+   11  kubectl get pods -0 wide
+   12  kubectl get pods -o  wide
+   13  kubectl exec qspider -it -c abc -- /bin/bash
+   14  kubectl exec qspider -it -c xyz -- /bin/bash
+   15  kubectl delete -f multic.yml
+   16  history
+
+
+
+apt update -y :used to update all features of ubuntu os inside pod
+apt install curl -y:used to install the curl
+curl <ip-address of pod>:80 ==> used to accesss the container using pod ip-address
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+multiple pod with a multiple container	
+
+
+vi pod1.yml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    ports:
+    - containerPort: 80
+vi pod2.yml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: httpd
+spec:
+  containers:
+  - name: httpd
+    image: httpd
+    ports:
+    - containerPort: 80
+
+
+vi pod1.yml
+   14  vi pod2.yml
+   15  cat pod1.yml
+   16  cat pod2.yml
+   17  clear
+   18  ls
+   19  kubectl apply -f pod1.yml
+   20  kubectl apply -f pod2.yml
+   21  kubectl get pods
+   22  kubectl get pods -o wide
+   23  curl 10.32.0.4:80
+   24  curl 10.32.0.3:80
+   25  history
+
+
+
+
+kubernets services
+>cluster IP
+ n>nodeport
+
+
+vi deploy.yml
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+   name: skillrary
+spec:
+   replicas: 1
+   selector:
+    matchLabels:
+     name: deployment
+   template:
+     metadata:
+       name: vip
+       labels:
+         name: deployment
+     spec:
+      containers:
+        - name: abcd
+          image: httpd
+          ports:
+          - containerPort: 80
+
+
+vi service.yml
+kind: Service
+apiVersion: v1
+metadata:
+  name: demoservice
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    name: deployment
+  type: ClusterIP
+ kubectl get pods
+    3  kubectl get svc
+    4  curl 10.105.227.200:80
+    5  kubectl describe svc demoservice
+    6  kubectl get pods -o wide
+    7  kubectl describe pod skillrary-645658c5ff-bjlzh
+    8  kubectl delete -f deploy.yml
+    9  kubectl delete -f service.yml
+
+vi deploy.yml
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+   name: jspider
+spec:
+   replicas: 1
+   selector:
+    matchLabels:
+     name: deployment
+   template:
+     metadata:
+       name: happy
+       labels:
+         name: deployment
+     spec:
+      containers:
+        - name: abcd
+          image: nginx
+          ports:
+          - containerPort: 80
+vi service.yml
+kind: Service
+apiVersion: v1
+metadata:
+  name: demoservice
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    name: deployment
+  type: NodePort
+    4  vi deploy.yml
+    5  vi service.yml
+    6  kubectl apply -f deploy.yml
+    7  kubectl apply -f service.yml
+    8  kubectl get pods
+    9  kubectl get svc
+   10  kubectl describe svc demoservice
+   11  kubectl delete -f deploy.yml
+   12  kubectl delete -f service.yml
+
+
+
+vi empty.yml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: volume
+spec:
+  containers:
+  - name: c00
+    image: centos
+    command: ["/bin/bash", "-c", "sleep 15000"]
+    volumeMounts:
+      - name: skillrary
+        mountPath: "/tmp/qspider"
+  - name: c01
+    image: centos
+    command: ["/bin/bash", "-c", "sleep 10000"]
+    volumeMounts:
+      - name: skillrary
+        mountPath: "/tmp/jspider"
+  volumes:
+  - name: skillrary
+    emptyDir: {}
+
+
+
+
+
+
+vi host.yml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo
+spec:
+  containers:
+  - image: centos
+    name: sample
+    command: ["/bin/bash", "-c", "sleep 15000"]
+    volumeMounts:
+    - mountPath: /tmp/hostpath
+      name: skillrary
+  volumes:
+  - name: skillrary
+    hostPath:
+      path: /tmp/data
+worker node :
+ls
+   11  cd tmp/
+   12  ls
+   13  cd data/
+   14  ls
+   15  echo "subbu wait" > file.txt
+   16  ls
+   17  ll
+   18  pwd
+   19  touch suubu
+   20  exit
+   21  history
+master node
+vi host.yml
+   24  clear
+   25  cat host.yml
+   26  kubectl apply -f host.yml
+   27  kubectl get pods
+   28  ls
+   30  kubectl exec demo -it -- /bin/bash
+   31  history
+
+nginx-deploy-795db8dfd6-zzqdp
+
+nfs instance req:
+- ubuntu
+- t2.micro
+- all traffic
+
+run all the commands in nfs node :
+- sudo apt update -y
+- sudo apt install nfs-kernel-server -y
+- sudo mkdir -p /mnt/sak
+- sudo chown -R nobody:nogroup /mnt/sak/
+- sudo vim /etc/exports
+- insert this content to /etc/exports → as below
+--> /mnt/sak *(rw,sync,no_subtree_check)
+  if you face any security issues then use below content
+--> /mnt/sak *(rw,sync,no_subtree_check,insecure)
+- sudo exportfs -a
+- to check exports
+--> sudo exportfs -v or showmount -e
+- sudo systemctl restart nfs-kernel-server
+Step 2 : NFS-Client (in Worker Nodes)
+- sudo apt install nfs-common -y
+- showmount -e  <nfs private IP>→
+Example : showmount -e 172.31.32.58
+vi pv.yml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-nfs-pv1
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: 172.31.40.166 #nfs server private IP
+    path: "/mnt/sak"
+:wq
+vi pvc.yml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-nfs-pv1
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 500Mi
+:wq
+vi deploy.yml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: nginx
+  name: nginx-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: nginx
+  template:
+    metadata:
+      labels:
+        run: nginx
+    spec:
+      volumes:
+      - name: www
+        persistentVolumeClaim:
+          claimName: pvc-nfs-pv1
+      containers:
+      - image: nginx
+        name: nginx
+        volumeMounts:
+        - name: www
+          mountPath: /usr/share/nginx/html
+:wq
+run commands in master node :
+vi pv.yml
+    5  vi pvc.yml
+    6  vi deploy.yml
+    7  kubectl aplly -f pv.yml
+    8  kubectl apply -f pv.yml
+    9  kubectl apply -f pvc.yml
+   10  kubectl apply -f deploy.yml
+   11  kubectl get pvc
+   12  kubectl get deploy
+   13  kubectl get all
+   14  clear
+   15  kubectl get all
+   16  kubectl exec -it deployment.apps/nginx-deploy -- /bin/bash
+   17  kubectl get pods
+   18  kubectl delete pod nginx-deploy-795db8dfd6-f5wwh
+   19  kubectl get pods
+   20  kubectl get deploy
+   21  kubectl get pods
+   22  kubectl exec nginx-deploy-795db8dfd6-rtdwl -it -- /bin/bash
+   23  history
+run commands on nfs :
+ls
+    3  touch jsp.txt
+    4  ls
+    5  cd /mnt/sak
+    6  ls
+    7  cat file.txt
+
+
+
+30-06-2023
+
+configmap :
+vi sample.conf
+add any data
+:wq
+> vi pod.yml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myconfig
+spec:
+  containers:
+  - name: c1
+    image: centos
+    command: ["/bin/bash", "-c", "while true; do echo welcome to k8s; sleep 5 ; done"]
+    volumeMounts:
+      - name: testconfigmap
+        mountPath: "/tmp/config"   # the config files will be mounted as ReadOnly by default here
+  volumes:
+  - name: testconfigmap
+    configMap:
+       name: mymap   # this should match the config map name created in the first step
+       items:
+       - key: sample.conf
+         path: sample.conf
+vi sample.conf
+   16  ls
+   17  vi pod.yml
+   18  ls
+   19  kubectl create configmap mymap --from-file=sample.conf
+   20  kubectl get configmap
+   21  cat sample.conf
+   22  kubectl describe configmap mymap
+   23  kubectl get po
+   24  vi pod.yml
+   25  kubectl apply -f pod.yml
+   26  kubectl get po
+   27  kubectl exec myconfig -it -- /bin/bash
+   28  ls
+   29  cat sample.conf
+   30  vi sample.conf
+   31  kubectl exec myconfig -it -- /bin/bash
+   32  kubectl get po
+   33  cat sm
+   34  cat sample.conf
+   35  kubectl get configmap
+   36  kubectl delete configmap mymap
+   37  cat sample.conf
+   38  kubectl create configmap mymap --from-file=sample.conf
+   39  kubectl get po
+   40  kubectl exec -it myconfig -- /bin/bash
+   41  kubectl get po
+   42  kubectl delete -f pod.yml
+   43  kubectl get config map
+   44  kubectl get configmap
+   45  kubectl delete configmap mymap
+inside pods
+[root@myconfig config]# history
+    1  ls
+    2  cd tmp/
+    3  ls
+    4  cd config/
+    5  ls
+    6  cat sample.conf
+    7  history
+[root@myconfig config]# exit
+
+
+
+secret k8s
+
+vi deploy.yml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mysecret
+spec:
+  containers:
+  - name: c1
+    image: centos
+    command: ["/bin/bash", "-c", "while true; do echo welcome to devops; sleep 5 ; done"]
+    volumeMounts:
+      - name: testsecret
+        mountPath: "/tmp/mysecrets"   # the secret files will be mounted as ReadOnly by default here
+  volumes:
+  - name: testsecret
+    secret:
+       secretName: mysecret
+ echo "sak" > username.txt; echo "sak123" > password.txt
+   50  ls
+   51  cat username.txt
+   52  cat password.txt
+   53  ls
+   54  kubectl create secret generic mysecret --from-file=username.txt --from-file=password.txt
+   55  kubtctl get secret
+   56  kubectl get secret
+   57  ls
+   58  vi deploy.yml
+   59  kubectl apply -f deploy.yml
+   60  kubectl get po
+   61  kubectl exec -it mysecret -- /bin/bash
+   62  kubectl get secret
+   63  kubectl delete secret mysecret
+   64  kubectl delete -f deploy.yml
+   65  history
+inside pod[root@mysecret mysecrets]# history
+    1  ls
+    2  cd tmp/
+    3  ls
+    4  cd mysecrets/
+    5  ls
+    6  cat password.txt
+    7  cat username.txt
+    8  history
+[root@mysecret mysecrets]# exit
+
+
+namespace
+
+To create namespace :
+> vi devns.yml
+apiVersion: v1
+kind: Namespace
+metadata:
+   name: dev
+   labels:
+     name: dev
+:wq
+
+
+Commands :
+kubectl apply -f devns.yml
+To get namespace : kubectl get ns
+To create a pod :
+> vi pod1.yml
+kind: Pod
+apiVersion: v1
+metadata:
+  name: testpod
+spec:
+  containers:
+    - name: c00
+      image: ubuntu
+      command: ["/bin/bash", "-c", "while true; do echo welcome to k8s; sleep 5 ; done"]
+:wq
+
+vi devns.yml
+   79  kubectl apply -f devns.yml
+   80  kubectl get namespace
+   81  vi pod.yml
+   82  kubeclt apply -f pod.yml
+   83  kubectl apply -f pod.yml
+   84  kubectl get po
+   85  kubectl get pods -n dev
+   86  kubectl get po
+   87  kubectl delete -f pod.yml
+   88  kubectl get pods
+   89  kubectl get pods -n dev
+   90  kubectl apply -f pod.yml  -n dev
+   91  kubectl get po
+   92  kubectl get po -n dev
+   93  kubectl delete -f pod.yml
+   94  kubectl delete -f pod.yml -n dev
+   95  kubectl get ns
+   96  kubectl delete ns dev
+   97  rm -rf devns.yml
+   98  rm -rf pod.yml
+   99  history
+Message sak_shetty
+
+resource management
+> vi resource.yml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: resources
+spec:
+  containers:
+  - name: resource
+    image: centos
+    command: ["/bin/bash", "-c", "while true; do echo hello good evening; sleep 5 ; done"]
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "100m"
+      limits:
+        memory: "128Mi"
+        cpu: "200m"
+:wq
+vi resource.yml
+  103  kubectl apply -f resource.yml
+  104  kubectl get po
+  105  kubectl describe pod resources
+  106  kubectl delete -f resource.yml
+  107  history

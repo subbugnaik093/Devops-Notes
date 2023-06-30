@@ -1,0 +1,399 @@
+Shell Scripting :
+------------------------------------------------------------------------------------------------------------------------------------------
+1.Programming lang :- c,c++,java,python,dotnet
+2.scripting lang :-java script,shell script
+3.Markup lang :- html,xml.
+What is this shell :-
+------------------------------------------------------------------------------------------------------------------------------------------
+	Shell is a main part of our kernel, whenever a user will send a request  to kernel 1st shell will receive the data 
+                 and it will execute and based on the output it will send a request to kernel in  machine readable lang....
+
+
+Types of Shell :
+------------------------------------------------------------------------------------------------------------------------------------------
+1. The Bourne Shell :-
+2. Bash shell :- it is called the default shell of many linux distributions.
+3. The C Shell :-
+4. The Korn Shell :-
+
+Bash shell →  Bash is a unix shell and command language.
+
+Scripting :-
+Scripting is a loosely coupled code...
+In the script there is no syntax..
+
+what is shell scripting :
+------------------------------------------------------------------------------------------------------------------------------------------
+	Shell scripting is a combination of linux commands, it is used to perform a daily task like ,backup
+and also it is used to perform any specific task like installation...
+
+
+why shell scripting :
+------------------------------------------------------------------------------------------------------------------------------------------
+	Using a shell script is most useful for repetitive tasks that may be time consuming to execute by typing one line at a time. 
+         A few examples of applications shell scripts can be used for include: 
+          Automating the code compiling process. 
+           Running a program or creating a program environment.
+
+
+Here are many reasons to write shell scripts —
+------------------------------------------------------------------------------------------------------------------------------------------
+> To avoid repetitive work and automation
+> System admins use shell scripting for routine backups
+> System monitoring
+> Adding new functionality to the shell etc.
+
+
+Advantages Of Shell Scripting
+------------------------------------------------------------------------------------------------------------------------------------------
+> The command and syntax are exactly the same as those directly entered in command line, 
+  so programmer do not need to switch to entirely different syntax
+> Writing shell scripts are much quicker
+> Quick start
+> Interactive debugging etc.
+
+
+Disadvantages Of Shell Scripting
+------------------------------------------------------------------------------------------------------------------------------------------
+> Prone to costly errors, a single mistake can change the command which might be harmful
+> Slow execution speed
+> Not well suited for large and complex task
+
+
+
+
+
+
+Operator                  -- Description                        -- Example
+
++ (Addition) --> Adds values on either side of the operator --> `expr $a + $b` will give 30
+- (Subtraction) --> Subtracts right hand operand from left hand operand--> `expr $a - $b` will give -10
+* (Multiplication) --> Multiplies values on either side of the operator --> `expr $a \* $b` will give 200
+/ (Division) --> Divides left hand operand by right hand operand --> `expr $b / $a` will give 2
+% (Modulus) --> Divides left hand operand by right hand operand and returns remainder --> `expr $b % $a` will give 0
+
+
+
+
+
+
+
+Arithmetic :
+===============================================================================
+→ type 1 (operation)
+var1=10
+var2=20
+sum=`expr $var1 + $var2`
+echo $sum  → o/p → 30
+→ type 2 (operation)
+var1=10
+var2=20
+sum=$((var1 + var2))
+echo $sum  → o/p → 30
+
+
+String Operations : to count String words
+------------------------------------------------------------------------------------------------------------------------------------------
+name=karnataka
+len=`expr length $name`
+echo $len  → o/p → 9
+Dynamic values
+echo "enter value : "
+read name
+len=`expr length $name`
+echo $len
+
+
+To list the files :
+------------------------------------------------------------------------------------------------------------------------------------------
+for i in *
+do
+echo $i
+done
+To display only specific kind of extension :
+------------------------------------------------------------------------------------------------------------------------------------------
+for i in $(ls *.sh)
+do
+echo $ish s
+done
+
+syntax :-
+--------------------------
+if condition
+then
+statement
+fi
+
+Example :
+------------------------------------------------------------------------------------------------------------------------------------------
+echo enter the number
+read number
+if [ $number -lt 100 ]
+then
+printf $number is less than 100 / echo $number is less than 100
+fi
+
+printf - it shows only particuler value.
+-lt - to compare lesser than 
+-gt - to compare greater than
+
+
+===============================================================================
+if-else :
+------------------------------------------------------------------------------------------------------------------------------------------
+If the condition is true then it will print if statement if the condition is false then it will execute else part
+echo enter name
+read name
+if [[ $name == "Jspiders" ]]
+then
+echo "you were right"
+else
+echo "better luck next time"
+fi
+
+
+
+By using if-else statements evaluate Even-odd numbers...
+#!/bin/bash
+echo "enter the number"
+read number
+if [ `expr $number % 2 ` == 1 ] //give same gap as it is then only it will execute.
+then
+echo "the number is odd"
+else
+echo "even"
+fi
+or
+#!/bin/bash
+echo "enter the number"
+read number
+if [ $((number % 2)) == 1 ]
+then
+echo "the number is odd"
+else
+echo "even"
+fi
+
+
+Else-if :
+------------------------------------------------------------------------------------------------------------------------------------------
+If the condition get false then it will check one more condition
+#!/bin/bash
+echo "enter the number"
+read number
+if [ `expr $number % 2` == 0 ]
+then
+echo "the number is even"
+elif [ `expr $number % 2` == 1 ]
+then
+echo "the number is odd"
+fi
+or
+#!/bin/bash
+echo "enter the num"
+read num
+if [ $(( num % 2 )) == 0 ]
+then
+echo "the num is even"
+elif [ $(( num % 2 )) == 1 ]
+then
+echo "the num is odd"
+fi
+
+
+
+
+While Loop
+------------------------------------------------------------------------------------------------------------------------------------------
+Syntax :
+---------
+while condition
+do
+{
+statements
+}
+done
+Example :
+------------------------------------------------------------------------------------------------------------------------------------------
+init=3
+while [[ $init -le 10 ]]
+do
+echo $init
+((init++))
+done
+
+One line for loop
+#!/bin/bash
+for i in {1..5}; do echo "number: $i"; done
+
+To copy files from one to another directory
+(first create dir → run this command)
+#!/bin/bash
+for i in *; do cp $i /root/sak; done
+
+#!/bin/bash
+for i in /etc/*.conf; do cp $i /root/sak1; echo "work done"; done
+
+
+
+
+To check files
+—---------------------------------------------------------------------------------------------------------------------------------------
+#!/bin/bash
+if [ -f /root/demo.sh ]
+then
+echo "File exists."
+else
+echo "file not exists"
+fi
+
+
+Switch case
+============
+Example → 1
+===============================================================================
+echo "enter a fruit name"
+read fruit
+case $fruit in
+apple)
+echo "this a apple"
+;;
+orange)
+echo "this is orange"
+;;
+mango)
+echo "this is mango"
+;;
+*)
+echo "the fruit is not available"
+;;
+esac
+
+
+
+
+Functions :
+------------------------------------------------------------------------------------------------------------------------------------------
+Function is a group of statement it will get execute whenever it is called or invoked
+------------------------------------------------------------------------------------------------------------------------------------------
+Example : 1 (Method)
+------------------------------------------------------------------------------------------------------------------------------------------
+→  static value
+sum()
+{
+echo “the values are”
+a=10
+b=20
+x=`expr $a + $b`      #command line arguments
+echo $x
+}
+sum  # → method calling
+→ dynamic value
+sum()
+{
+echo add a values for a and b
+read a
+read b
+x=`expr $a + $b`      #command line arguments
+echo $x
+}
+sum   # → method calling
+------------------------------------------------------------------------------------------------------------------------------------------
+Example : 2 (Method with parameter)
+------------------------------------------------------------------------------------------------------------------------------------------
+→ static value
+#!/bin/bash
+sum()
+{
+        echo "printing"
+        c=$(($1 + $2 + $3))
+        echo $c
+}
+echo "enter the data here"
+sum 10 20 30
+→ dynamic input
+#!/bin/bash
+sum()
+{
+        echo "printing"
+        c=$(($1 + $2 + $3))
+        echo $c
+}
+echo "enter the data here"
+read a
+read b
+read c
+sum a b c
+
+
+
+install()
+{
+echo "installing nginx"
+echo $FUNCNAME
+}
+config()
+{
+echo "configuring nginx server"
+echo $FUNCNAME
+}
+#calling block
+install
+config
+
+pkg=tomcat            #GLOBAL VARIABLE
+install()
+{
+echo "install $pkg"
+echo function name is $FUNCNAME
+}
+config()
+{
+pkg=nginx          #LOCAL VARIABLE
+echo "config the $pkg"
+echo $FUNCNAME
+}
+install
+config
+
+
+1.Array :
+------------------------------------------------------------------------------------------------------------------------------------------
+An array is a collection of items of some data type stored at a contiguous memory location...
+example :
+------------------------------------------------------------------------------------------------------------------------------------------
+#!/bin/bash
+arr=(sak jsp mysore goa)
+echo ${arr[@]:1}  # → start from 1st index
+echo ${arr[@]:2}  # → start from 2st index
+echo ${arr[0]} # → to print particular index value
+echo ${arr[2]}
+echo ${!arr[@]} # → to print all array index numbers
+
+
+
+component of shell scripting
+------------------------------------------------------------------------------------------------------------------------------------------
+Shebang: The shebang (also known as a hashbang) is a special line at the beginning of a shell script that specifies the interpreter to be used. It starts with "#!" followed by the path to the shell executable, such as #!/bin/bash for the Bash shell.
+
+Comments: Comments are lines in the script that are not executed as commands but provide information or explanations for human readers. In shell scripting, comments start with the "#" symbol.
+
+Variables: Variables are used to store data in shell scripts. They can hold strings, numbers, or other values. Variables are defined using the syntax variable_name=value. For example, name="John" defines a variable named "name" with the value "John".
+
+Input and output: Shell scripts can interact with users and display output. The echo command is commonly used to print messages to the screen. User input can be read using the read command and stored in variables.
+
+Control structures: Shell scripting supports control structures for making decisions and controlling the flow of execution. Common control structures include:
+
+Conditional statements: These include the if, else, and elif statements, which allow the script to perform different actions based on specified conditions.
+
+Looping constructs: Shell scripts support various looping constructs, such as for loops, while loops, and until loops, to repeat a block of code multiple times.
+
+Functions: Functions in shell scripting allow you to group a set of commands together and execute them as a single unit. They are defined using the function keyword or simply as name(). Functions can take parameters and return values.
+
+Command substitution: Command substitution allows the output of a command to be used as a value within a shell script. It is done by enclosing the command within $(command) or backticks `command`.
+
+Conditional expressions: Shell scripting provides various operators and constructs to evaluate conditions. These include comparison operators (-eq, -ne, -lt, -gt, etc.), string comparison operators (=, !=, -z, -n, etc.), and logical operators (&&, ||, !).
+
+File and directory operations: Shell scripts can perform file and directory operations, such as creating, reading, writing, and deleting files. Commands like touch, cat, cp, mv, rm, and mkdir are commonly used for file and directory manipulation.
+
+Command execution: Shell scripts can execute other commands or run external programs using the command line. For example, running ls, grep, awk, or any other command-line tool.
